@@ -3,7 +3,7 @@ version: '3'
 services:
     laravel.test:
         build:
-            context: ./vendor/laravel/sail/runtimes/8.1
+            context: ./docker/app
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
@@ -47,6 +47,18 @@ services:
             test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
             retries: 3
             timeout: 5s
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links:
+          - mysql:mysql
+        ports:
+          - 8081:80
+        environment:
+          MYSQL_USERNAME: ${DB_USERNAME}
+          MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+          PMA_HOST: mysql
+        networks:
+          - sail
     redis:
         image: 'redis:alpine'
         ports:
