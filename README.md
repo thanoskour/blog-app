@@ -1,15 +1,46 @@
 
 ## Example blog app
 
-### Installation
+## Installation
 
-- Fork this repository
-- <a href="https://laravel.com/docs/9.x/installation#laravel-and-docker">Install docker desktop</a>
-- Copy .env.example to .env `cp .env.example .env`
-- run `docker-compose up -d --build`
-- inside the app container (`docker exec -it `) run
-    - `php artisan key:generate`
-    - `composer isntall`
+Fork this repository
+
+<a href="https://laravel.com/docs/9.x/installation#laravel-and-docker">Install docker desktop</a>
+
+Copy .env.example to .env
+
+```
+cp .env.example .env
+```
+
+Build the docker containers using docker-compose
+```
+docker-compose up -d --build
+```
+
+Enter the app's container using
+
+```cmd
+docker exec -it blog-app-laravel.test-1 /bin/bash
+```
+
+Then inside the app's container run
+
+```
+composer install
+npm install
+php artisan key:generate
+php artisan migrate 
+```
+
+
+## Tasks
+Run the following inside the app container (blog-app-laravel.test-1)
+```php
+ php artisan test
+```
+Make changes in the code so the tests pass.
+
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 

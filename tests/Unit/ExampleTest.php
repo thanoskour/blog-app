@@ -26,9 +26,11 @@ class ExampleTest extends TestCase
      */
     public function task_1_user_has_many_posts()
     {
+        // create new user
         $user = User::factory()->create();
 
-        $post = Post::factory(5)->create([
+        // add posts to the user
+        Post::factory(5)->create([
             'author_id' => $user->id,
         ]);
 
@@ -43,8 +45,10 @@ class ExampleTest extends TestCase
      */
     public function task_2_a_blog_may_have_an_author()
     {
+        // create new user
         $user = User::factory()->create();
 
+        // add a post to the user
         $post = Post::factory()->create([
             'author_id' => $user->id,
         ]);
@@ -55,8 +59,10 @@ class ExampleTest extends TestCase
     /** @test */
     public function task_3_show_posts_by_author(){
 
+        // create new user
         $user = User::factory()->create();
 
+        // add posts to the user
         $posts = Post::factory(5)->create([
             'author_id' => $user->id,
         ]);
@@ -70,14 +76,18 @@ class ExampleTest extends TestCase
     /** @test */
     public function task_4_assert_not_too_many_queries(){
 
+        // create new user
         $user = User::factory()->create();
 
-        $posts = Post::factory(10)->create([
+        // add posts to the user
+        Post::factory(10)->create([
             'author_id' => $user->id,
         ]);
 
+        // enables database query logging
         DB::flushQueryLog();
         DB::enableQueryLog();
+
         $response = $this->call('GET',route('index'));
         $response->assertStatus(200);
 
