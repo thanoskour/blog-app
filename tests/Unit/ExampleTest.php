@@ -91,6 +91,11 @@ class ExampleTest extends TestCase
         $response = $this->call('GET',route('index'));
         $response->assertStatus(200);
 
+
+        // expect 10 posts
+        $this->assertCount(10,$response->getOriginalContent()->getData()['posts']);
+
+        // expect 3 queries
         $this->assertCount(3,DB::getQueryLog());
     }
 }

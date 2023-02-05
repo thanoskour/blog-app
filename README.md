@@ -39,8 +39,19 @@ Run the following inside the app container (blog-app-laravel.test-1)
 ```php
  php artisan test
 ```
-Make changes in the code so the tests pass.
 
+Make changes in the code so the tests pass, you are not supposed to modify the tests.
+
+## Run code in github actions
+
+Alternatively if you have trouble installing docker locally you can run the tests using github actions.
+
+To do this you need to go to your fork, Go to the `Actions` tab and enable workflows
+
+![](resources/documentation/images/enable-github-actions.png)
+
+After that every push you make to the `master` and `develop` branches will trigger
+this [workflow](.github/workflows/build-and-run-tests.yml), that will build the app and execute the tests
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
