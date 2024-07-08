@@ -10,7 +10,6 @@ class UserPostController extends Controller
 {
     public function index($userId){
         $user = User::with('posts')->findOrFail($userId);
-
         $posts = $user->posts()->paginate(5);
 
         return view('posts.user-posts',compact('user','posts'));
