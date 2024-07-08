@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class UserPostController extends Controller
 {
     public function index($userId){
-        $user = User::findOrFail($userId);
+        $user = User::with('posts')->findOrFail($userId);
 
         $posts = $user->posts()->paginate(5);
 

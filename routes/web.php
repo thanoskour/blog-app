@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserPostController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\HomeController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +27,5 @@ Route::get('posts/{slug}',[\App\Http\Controllers\PostController::class,'view'])-
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/user/{user}/posts', [UserPostController::class, 'index']) ->name('user.posts');
